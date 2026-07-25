@@ -1,0 +1,72 @@
+name: docker
+
+services:
+  frontend:
+    image: node:20-alpine
+    container_name: clientflow-frontend
+    working_dir: /workspace/apps/clientflow-os/frontend
+    command:
+      - sh
+      - -c
+      - corepack enable && corepack prepare pnpm@10.33.4 --activate && pnpm install --no-frozen-lockfile --config.confirmModulesPurge=false && pnpm dev --host 0.0.0.0
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+      CI: "true"
+    expose:
+      - "5173"
+    ports:
+      - "5173:5173"
+    volumes:
+      - /Users/ruhlinit/Development/RuhlinIT_build:/workspace
+    networks:  
+      - web
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: clientflow-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: clientflow
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    expose:
+      - "5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d clientflow"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - web
+
+  caddy:
+    image: caddy:2
+    container_name: clientflow-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      frontend:
+        condition: service_started
+    volumes:
+      - /Users/ruhlinit/Development/RuhlinIT_build/ops/docker/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - web
+
+networks:
+  web:
+    name: docker_web
+
+volumes:
+  postgres_data:
+    name: docker_postgres_data
+  caddy_data:
+    name: docker_caddy_data
+  caddy_config:
+    name: docker_caddy_config
