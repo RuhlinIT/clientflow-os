@@ -1,130 +1,147 @@
-import StatCard from '../components/StatCard'
-import SectionCard from '../components/SectionCard'
+import SectionCard from "../components/SectionCard";
 
-const stats = [
-  { label: 'Open Leads', value: '12', change: '+3 this week' },
-  { label: 'Active Projects', value: '7', change: '+1 this week' },
-  { label: 'Pending Tasks', value: '23', change: '5 due today' },
-  { label: 'Unread Updates', value: '5', change: '2 new messages' },
-]
-
-const activity = [
-  'New inquiry submitted for wedding DJ package.',
-  'Real estate media project moved to editing.',
-  'Client portal access granted for a new customer.',
-  'Homepage dashboard shell deployed locally.',
-]
+const workQueue = [
+  {
+    title: "Create backend /health endpoint.",
+    context: "Infrastructure",
+    status: "Now",
+  },
+  {
+    title: "Add routing and protected layout.",
+    context: "App shell",
+    status: "In progress",
+  },
+  {
+    title: "Design lead capture and client tables.",
+    context: "Data model",
+    status: "Next",
+  },
+  {
+    title: "Create Leads and Projects placeholder pages.",
+    context: "Route coverage",
+    status: "Queued",
+  },
+];
 
 const nextActions = [
-  'Create backend /health endpoint.',
-  'Add routing and protected layout.',
-  'Design lead capture and client tables.',
-]
+  "Open Tasks and finish route-level placeholder coverage.",
+  "Move lead and project concepts out of the dashboard and into their own pages.",
+  "Keep dashboard focused on queue, context, and handoff.",
+];
 
-const pipeline = [
-  { stage: 'New Leads', count: 12 },
-  { stage: 'Qualified', count: 6 },
-  { stage: 'Proposal Sent', count: 4 },
-  { stage: 'Booked', count: 2 },
-]
-
-const tasks = [
-  'Polish dashboard spacing and card hierarchy.',
-  'Keep shared UI local until monorepo packaging is stable.',
-  'Create Leads and Projects placeholder pages.',
-]
+const summary = [
+  {
+    label: "Open leads",
+    value: "12",
+    note: "Still belongs in pipeline context, not as a hero KPI.",
+  },
+  {
+    label: "Active projects",
+    value: "7",
+    note: "Useful for orientation only.",
+  },
+  {
+    label: "Pending tasks",
+    value: "23",
+    note: "Best surfaced through the work queue.",
+  },
+];
 
 const systemStatus = [
-  { label: 'Docker', value: 'Online' },
-  { label: 'Frontend', value: 'Running' },
-  { label: 'Tailwind', value: 'Active' },
-  { label: 'Routing', value: 'In Progress' },
-]
+  { label: "Docker", value: "Online" },
+  { label: "Frontend", value: "Running" },
+  { label: "Tailwind", value: "Active" },
+  { label: "Routing", value: "In Progress" },
+];
 
 export default function DashboardPage() {
   return (
     <div className="space-y-6">
-      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {stats.map((stat) => (
-          <StatCard
-            key={stat.label}
-            label={stat.label}
-            value={stat.value}
-            change={stat.change}
-          />
-        ))}
-      </section>
-
-      <section className="grid gap-6 xl:grid-cols-[1.5fr_1fr]">
-        <SectionCard title="Recent Activity">
-          <ul className="space-y-3 text-sm text-zinc-300">
-            {activity.map((item) => (
-              <li
-                key={item}
-                className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </SectionCard>
-
-        <SectionCard title="Next Actions">
-          <ul className="space-y-3 text-sm text-zinc-300">
-            {nextActions.map((item) => (
-              <li
-                key={item}
-                className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </SectionCard>
-      </section>
-
-      <section className="grid gap-6 lg:grid-cols-3">
-        <SectionCard title="Pipeline Summary">
+      <section className="grid gap-6 xl:grid-cols-[1.65fr_1fr]">
+        <SectionCard
+          title="Work Queue"
+          description="The items that should move first."
+        >
           <div className="space-y-3">
-            {pipeline.map((item) => (
+            {workQueue.map((item) => (
               <div
-                key={item.stage}
-                className="flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3 text-sm"
+                key={item.title}
+                className="flex items-start justify-between gap-4 rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3"
               >
-                <span className="text-zinc-300">{item.stage}</span>
-                <span className="font-medium text-white">{item.count}</span>
+                <div className="space-y-1">
+                  <p className="text-sm font-medium text-white">{item.title}</p>
+                  <p className="text-xs uppercase tracking-wide text-zinc-500">
+                    {item.context}
+                  </p>
+                </div>
+
+                <span className="shrink-0 rounded-full border border-zinc-700 px-2.5 py-1 text-xs text-teal-300">
+                  {item.status}
+                </span>
               </div>
             ))}
           </div>
         </SectionCard>
 
-        <SectionCard title="Upcoming Tasks">
-          <ul className="space-y-3 text-sm text-zinc-300">
-            {tasks.map((item) => (
-              <li
-                key={item}
-                className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </SectionCard>
+        <div className="space-y-6">
+          <SectionCard
+            title="Next Actions"
+            description="Use the dashboard to choose a lane, then move into the route."
+          >
+            <ul className="space-y-3 text-sm text-zinc-300">
+              {nextActions.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </SectionCard>
 
-        <SectionCard title="System Status">
-          <div className="space-y-3">
-            {systemStatus.map((item) => (
+          <SectionCard
+            title="System Status"
+            description="Light operational context."
+          >
+            <div className="space-y-3">
+              {systemStatus.map((item) => (
+                <div
+                  key={item.label}
+                  className="flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3 text-sm"
+                >
+                  <span className="text-zinc-400">{item.label}</span>
+                  <span className="text-teal-300">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </SectionCard>
+        </div>
+      </section>
+
+      <section>
+        <SectionCard
+          title="Dashboard Summary"
+          description="Small context blocks, not a KPI wall."
+        >
+          <div className="grid gap-4 md:grid-cols-3">
+            {summary.map((item) => (
               <div
                 key={item.label}
-                className="flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3 text-sm"
+                className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-4"
               >
-                <span className="text-zinc-400">{item.label}</span>
-                <span className="text-teal-300">{item.value}</span>
+                <p className="text-xs uppercase tracking-wide text-zinc-500">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-white">
+                  {item.value}
+                </p>
+                <p className="mt-2 text-sm text-zinc-400">{item.note}</p>
               </div>
             ))}
           </div>
         </SectionCard>
       </section>
     </div>
-  )
+  );
 }
