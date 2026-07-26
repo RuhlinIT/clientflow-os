@@ -2,129 +2,107 @@ import SectionCard from "../components/SectionCard";
 
 const workQueue = [
   {
-    title: "Create backend /health endpoint.",
-    context: "Infrastructure",
+    title: "Review tasks due today across active clients.",
+    context: "Tasks",
     status: "Now",
   },
   {
-    title: "Add routing and protected layout.",
-    context: "App shell",
-    status: "In progress",
+    title: "Follow up with accounts waiting on next response.",
+    context: "Clients",
+    status: "Now",
   },
   {
-    title: "Design lead capture and client tables.",
-    context: "Data model",
+    title: "Clear blocked work before adding new tasks.",
+    context: "Tasks",
     status: "Next",
   },
   {
-    title: "Create Leads and Projects placeholder pages.",
-    context: "Route coverage",
-    status: "Queued",
+    title: "Review workspace defaults for intake and delivery flow.",
+    context: "Settings",
+    status: "Later",
   },
 ];
 
 const nextActions = [
-  "Open Tasks and finish route-level placeholder coverage.",
-  "Move lead and project concepts out of the dashboard and into their own pages.",
-  "Keep dashboard focused on queue, context, and handoff.",
+  "Open Tasks and clear anything overdue or blocked.",
+  "Open Clients and review accounts that need follow-up.",
+  "Use Settings to finalize default workflow behavior.",
 ];
 
 const summary = [
   {
-    label: "Open leads",
-    value: "12",
-    note: "Still belongs in pipeline context, not as a hero KPI.",
+    label: "Clients needing attention",
+    value: "4",
+    note: "Accounts with stalled or pending follow-up.",
   },
   {
-    label: "Active projects",
-    value: "7",
-    note: "Useful for orientation only.",
+    label: "Tasks due today",
+    value: "6",
+    note: "Immediate work that should move before anything new.",
   },
   {
-    label: "Pending tasks",
-    value: "23",
-    note: "Best surfaced through the work queue.",
+    label: "Blocked items",
+    value: "2",
+    note: "Work waiting on input, approval, or dependency clearance.",
   },
 ];
 
 const systemStatus = [
-  { label: "Docker", value: "Online" },
-  { label: "Frontend", value: "Running" },
-  { label: "Tailwind", value: "Active" },
-  { label: "Routing", value: "In Progress" },
+  { label: "Shell", value: "Stable" },
+  { label: "Routing", value: "Stable" },
+  { label: "Workflow model", value: "In progress" },
 ];
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-6">
-      <section className="grid gap-6 xl:grid-cols-[1.65fr_1fr]">
-        <SectionCard
-          title="Work Queue"
-          description="The items that should move first."
-        >
-          <div className="space-y-3">
-            {workQueue.map((item) => (
-              <div
-                key={item.title}
-                className="flex items-start justify-between gap-4 rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3"
-              >
-                <div className="space-y-1">
-                  <p className="text-sm font-medium text-white">{item.title}</p>
-                  <p className="text-xs uppercase tracking-wide text-zinc-500">
-                    {item.context}
-                  </p>
-                </div>
-
-                <span className="shrink-0 rounded-full border border-zinc-700 px-2.5 py-1 text-xs text-teal-300">
-                  {item.status}
-                </span>
+    <div className="grid gap-6 xl:grid-cols-[1.7fr_1fr]">
+      <SectionCard
+        title="Work Queue"
+        description="The items that should move first."
+      >
+        <div className="space-y-3">
+          {workQueue.map((item) => (
+            <div
+              key={item.title}
+              className="flex items-start justify-between gap-4 rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3"
+            >
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-white">{item.title}</p>
+                <p className="text-xs uppercase tracking-wide text-zinc-500">
+                  {item.context}
+                </p>
               </div>
+
+              <span className="shrink-0 rounded-full border border-zinc-700 px-2.5 py-1 text-xs text-teal-300">
+                {item.status}
+              </span>
+            </div>
+          ))}
+        </div>
+      </SectionCard>
+
+      <div className="space-y-6">
+        <SectionCard
+          title="Next Actions"
+          description="Use the dashboard to choose a lane, then move into the route."
+        >
+          <ul className="space-y-3 text-sm text-zinc-300">
+            {nextActions.map((item) => (
+              <li
+                key={item}
+                className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3"
+              >
+                {item}
+              </li>
             ))}
-          </div>
+          </ul>
         </SectionCard>
 
-        <div className="space-y-6">
-          <SectionCard
-            title="Next Actions"
-            description="Use the dashboard to choose a lane, then move into the route."
-          >
-            <ul className="space-y-3 text-sm text-zinc-300">
-              {nextActions.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </SectionCard>
-
-          <SectionCard
-            title="System Status"
-            description="Light operational context."
-          >
-            <div className="space-y-3">
-              {systemStatus.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3 text-sm"
-                >
-                  <span className="text-zinc-400">{item.label}</span>
-                  <span className="text-teal-300">{item.value}</span>
-                </div>
-              ))}
-            </div>
-          </SectionCard>
-        </div>
-      </section>
-
-      <section>
         <SectionCard
-          title="Dashboard Summary"
-          description="Small context blocks, not a KPI wall."
+          title="Summary Snapshot"
+          description="Small context blocks to support quick decisions."
         >
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
             {summary.map((item) => (
               <div
                 key={item.label}
@@ -137,6 +115,25 @@ export default function DashboardPage() {
                   {item.value}
                 </p>
                 <p className="mt-2 text-sm text-zinc-400">{item.note}</p>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+      </div>
+
+      <section>
+        <SectionCard
+          title="System Status"
+          description="Light operational context."
+        >
+          <div className="space-y-3">
+            {systemStatus.map((item) => (
+              <div
+                key={item.label}
+                className="flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3 text-sm"
+              >
+                <span className="text-zinc-400">{item.label}</span>
+                <span className="text-teal-300">{item.value}</span>
               </div>
             ))}
           </div>
