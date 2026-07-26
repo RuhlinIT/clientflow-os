@@ -49,6 +49,8 @@
   --color-error-soft: #e8d4db;
   --color-info: #285f98;
   --color-info-soft: #d6e0ec;
+  --color-blocked: #6d4bb3;
+  --color-blocked-soft: #e1d8f2;
 
   --shadow-sm: 0 1px 2px rgb(28 25 23 / 0.05);
   --shadow-md: 0 8px 24px rgb(28 25 23 / 0.08);
@@ -121,6 +123,7 @@ ul,
 ol {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 h1,
@@ -244,6 +247,19 @@ p {
   gap: var(--space-4);
 }
 
+.work-queue {
+  display: flex;
+  flex-direction: column;
+}
+
+.work-queue .list-row:first-child {
+  padding-top: 0;
+}
+
+.work-queue .list-row:last-child {
+  padding-bottom: 0;
+}
+
 /* Reusable surfaces */
 
 .section-card {
@@ -315,7 +331,7 @@ p {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: var(--space-4);
-  align-items: center;
+  align-items: start;
   padding-block: var(--space-4);
   border-bottom: 1px solid var(--color-divider);
 }
@@ -495,6 +511,11 @@ p {
 .badge-info {
   color: var(--color-info);
   background: var(--color-info-soft);
+}
+
+.badge-blocked {
+  color: var(--color-blocked);
+  background: var(--color-blocked-soft);
 }
 
 .kicker {
