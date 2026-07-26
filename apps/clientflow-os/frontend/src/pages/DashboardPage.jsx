@@ -1,5 +1,5 @@
 import StatCard from '../components/StatCard'
-import Panel from '../components/Panel'
+import SectionCard from '../components/SectionCard'
 
 const stats = [
   { label: 'Open Leads', value: '12', change: '+3 this week' },
@@ -56,7 +56,7 @@ export default function DashboardPage() {
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1.5fr_1fr]">
-        <Panel title="Recent Activity">
+        <SectionCard title="Recent Activity">
           <ul className="space-y-3 text-sm text-zinc-300">
             {activity.map((item) => (
               <li
@@ -67,9 +67,9 @@ export default function DashboardPage() {
               </li>
             ))}
           </ul>
-        </Panel>
+        </SectionCard>
 
-        <Panel title="Next Actions">
+        <SectionCard title="Next Actions">
           <ul className="space-y-3 text-sm text-zinc-300">
             {nextActions.map((item) => (
               <li
@@ -80,11 +80,11 @@ export default function DashboardPage() {
               </li>
             ))}
           </ul>
-        </Panel>
+        </SectionCard>
       </section>
 
       <section className="grid gap-6 lg:grid-cols-3">
-        <Panel title="Pipeline Summary">
+        <SectionCard title="Pipeline Summary">
           <div className="space-y-3">
             {pipeline.map((item) => (
               <div
@@ -96,9 +96,9 @@ export default function DashboardPage() {
               </div>
             ))}
           </div>
-        </Panel>
+        </SectionCard>
 
-        <Panel title="Upcoming Tasks">
+        <SectionCard title="Upcoming Tasks">
           <ul className="space-y-3 text-sm text-zinc-300">
             {tasks.map((item) => (
               <li
@@ -109,9 +109,9 @@ export default function DashboardPage() {
               </li>
             ))}
           </ul>
-        </Panel>
+        </SectionCard>
 
-        <Panel title="System Status">
+        <SectionCard title="System Status">
           <div className="space-y-3">
             {systemStatus.map((item) => (
               <div
@@ -123,7 +123,7 @@ export default function DashboardPage() {
               </div>
             ))}
           </div>
-        </Panel>
+        </SectionCard>
       </section>
     </div>
   )

@@ -1,16 +1,13 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 
 const navItems = [
-  { label: 'Dashboard', to: '/' },
-  { label: 'Leads', to: '/leads' },
-  { label: 'Projects', to: '/projects' },
-  { label: 'Tasks', to: '/tasks' },
-  { label: 'Clients', to: '/clients' },
-  { label: 'Analytics', to: '/analytics' },
-  { label: 'Settings', to: '/settings' },
-]
+  { label: "Dashboard", to: "/" },
+  { label: "Clients", to: "/clients" },
+  { label: "Tasks", to: "/tasks" },
+  { label: "Settings", to: "/settings" },
+];
 
-export default function DashboardSidebar() {
+export default function SidebarNav() {
   return (
     <aside className="border-b border-zinc-800 bg-zinc-900/80 lg:border-b-0 lg:border-r">
       <div className="flex h-full flex-col px-4 py-6">
@@ -29,12 +26,12 @@ export default function DashboardSidebar() {
             <NavLink
               key={item.label}
               to={item.to}
-              end={item.to === '/'}
+              end={item.to === "/"}
               className={({ isActive }) =>
                 `flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm transition ${
                   isActive
-                    ? 'bg-teal-500/15 text-teal-300 ring-1 ring-teal-500/30'
-                    : 'text-zinc-300 hover:bg-zinc-800 hover:text-white'
+                    ? "bg-teal-500/15 text-teal-300 ring-1 ring-teal-500/30"
+                    : "text-zinc-300 hover:bg-zinc-800 hover:text-white"
                 }`
               }
             >
@@ -48,9 +45,11 @@ export default function DashboardSidebar() {
           <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">
             Environment
           </p>
-          <p className="mt-2 text-sm text-zinc-200">Docker + React + Tailwind + pnpm</p>
+          <p className="mt-2 text-sm text-zinc-200">
+            Docker + React + Tailwind + pnpm
+          </p>
         </div>
       </div>
     </aside>
-  )
+  );
 }

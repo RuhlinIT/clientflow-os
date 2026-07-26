@@ -1,4 +1,4 @@
-export default function Panel({ title, children }) {
+export default function SectionCard({ title, children }) {
   return (
     <section className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
       <div className="mb-4 flex items-center justify-between">

@@ -1,11 +1,11 @@
-import Panel from '../components/Panel'
+import SectionCard from '../components/SectionCard'
 
 export default function ClientsPage() {
   return (
-    <Panel title="Clients">
+    <SectionCard title="Clients">
       <p className="text-sm text-zinc-300">
         Clients view coming next. This page will store client records, contact data, and project history.
       </p>
-    </Panel>
+    </SectionCard>
   )
 }

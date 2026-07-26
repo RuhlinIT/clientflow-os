@@ -1,11 +1,11 @@
-import Panel from '../../components/Panel'
+import SectionCard from '../../components/SectionCard'
 
 export default function BillingSettingsPage() {
   return (
-    <Panel title="Billing Settings">
+    <SectionCard title="Billing Settings">
       <p className="text-sm text-zinc-300">
         Billing configuration, invoices, and subscription controls will live here.
       </p>
-    </Panel>
+    </SectionCard>
   )
 }
