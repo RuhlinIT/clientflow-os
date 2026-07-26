@@ -2,38 +2,38 @@ import SectionCard from "../components/SectionCard";
 
 const workQueue = [
   {
-    title: "Review tasks due today across active clients.",
+    title: "Review tasks due today across active client work.",
     context: "Tasks",
     status: "Now",
   },
   {
-    title: "Follow up with accounts waiting on next response.",
+    title: "Follow up on accounts waiting for a response.",
     context: "Clients",
     status: "Now",
   },
   {
-    title: "Clear blocked work before adding new tasks.",
+    title: "Clear blocked work before adding anything new.",
     context: "Tasks",
     status: "Next",
   },
   {
-    title: "Review workspace defaults for intake and delivery flow.",
+    title: "Finalize workflow defaults for intake and delivery.",
     context: "Settings",
     status: "Later",
   },
 ];
 
 const nextActions = [
-  "Open Tasks and clear anything overdue or blocked.",
+  "Open Tasks and clear overdue or blocked work first.",
   "Open Clients and review accounts that need follow-up.",
-  "Use Settings to finalize default workflow behavior.",
+  "Open Settings and finish baseline workflow configuration.",
 ];
 
-const summary = [
+const summarySnapshot = [
   {
     label: "Clients needing attention",
     value: "4",
-    note: "Accounts with stalled or pending follow-up.",
+    note: "Accounts with stalled communication or pending follow-up.",
   },
   {
     label: "Tasks due today",
@@ -43,11 +43,11 @@ const summary = [
   {
     label: "Blocked items",
     value: "2",
-    note: "Work waiting on input, approval, or dependency clearance.",
+    note: "Work waiting on approval, input, or dependency clearance.",
   },
 ];
 
-const systemStatus = [
+const environment = [
   { label: "Shell", value: "Stable" },
   { label: "Routing", value: "Stable" },
   { label: "Workflow model", value: "In progress" },
@@ -84,7 +84,7 @@ export default function DashboardPage() {
       <div className="space-y-6">
         <SectionCard
           title="Next Actions"
-          description="Use the dashboard to choose a lane, then move into the route."
+          description="Choose a lane, then move into the route."
         >
           <ul className="space-y-3 text-sm text-zinc-300">
             {nextActions.map((item) => (
@@ -100,10 +100,10 @@ export default function DashboardPage() {
 
         <SectionCard
           title="Summary Snapshot"
-          description="Small context blocks to support quick decisions."
+          description="Small context blocks that support quick decisions."
         >
           <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
-            {summary.map((item) => (
+            {summarySnapshot.map((item) => (
               <div
                 key={item.label}
                 className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-4"
@@ -111,7 +111,7 @@ export default function DashboardPage() {
                 <p className="text-xs uppercase tracking-wide text-zinc-500">
                   {item.label}
                 </p>
-                <p className="mt-2 text-2xl font-semibold text-white">
+                <p className="mt-1 text-xl font-semibold text-white">
                   {item.value}
                 </p>
                 <p className="mt-2 text-sm text-zinc-400">{item.note}</p>
@@ -119,26 +119,24 @@ export default function DashboardPage() {
             ))}
           </div>
         </SectionCard>
-      </div>
 
-      <section>
         <SectionCard
-          title="System Status"
-          description="Light operational context."
+          title="Environment"
+          description="Light build context for the current workspace."
         >
-          <div className="space-y-3">
-            {systemStatus.map((item) => (
+          <div className="space-y-2">
+            {environment.map((item) => (
               <div
                 key={item.label}
-                className="flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-950/60 px-4 py-3 text-sm"
+                className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-950/40 px-3 py-2 text-sm"
               >
                 <span className="text-zinc-400">{item.label}</span>
-                <span className="text-teal-300">{item.value}</span>
+                <span className="text-zinc-300">{item.value}</span>
               </div>
             ))}
           </div>
         </SectionCard>
-      </section>
+      </div>
     </div>
   );
 }
