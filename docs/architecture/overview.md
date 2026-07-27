@@ -100,6 +100,7 @@ The current documentation layers are:
 - `docs/architecture/` for current-state system structure
 - `docs/adr/` for durable architectural decisions
 - `docs/journal/` for chronological implementation notes and build-session context
+- `docs/medium/` for public build-in-public writing and publication history
 
 This separation is intentional. It keeps the current system map, the decision log, and day-by-day engineering notes distinct.
 

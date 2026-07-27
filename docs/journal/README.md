@@ -65,6 +65,7 @@ Examples:
 - [Root README](../../README.md)
 - [Architecture docs](../architecture/README.md)
 - [ADR index](../adr/README.md)
+- [Medium posts](../medium/README.md)
 
 ## Notes
 

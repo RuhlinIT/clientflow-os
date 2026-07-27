@@ -128,6 +128,11 @@ docker compose up
 - [Day 1 notes](./docs/journal/day-1.md) — dashboard philosophy and initial route direction
 - [Day 2 notes](./docs/journal/day-2.md) — shell alignment, dashboard refactor, and component extraction
 
+### Medium posts (Build in Public)
+
+- [Medium index](./docs/medium/README.md) — published and draft build-in-public posts
+- [Day 1 Medium post](./docs/medium/medium-day-1.md) — lean dashboard philosophy and Day 1 public write-up
+
 ## Development notes
 
 - UI components currently live inside the frontend app

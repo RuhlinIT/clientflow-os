@@ -18,6 +18,7 @@ For durable architectural decisions, use the ADR collection. For chronological i
 - [ADR index](../adr/README.md) — durable architectural decisions and their rationale
 - [Day 1 journal](../journal/day-1.md) — initial dashboard philosophy and route direction
 - [Day 2 journal](../journal/day-2.md) — shell alignment, dashboard refactor, and component extraction
+- [Medium posts](../medium/README.md) — public build-in-public articles and source copies
 
 ## Notes
 
