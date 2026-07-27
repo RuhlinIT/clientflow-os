@@ -1,85 +1,71 @@
 # ClientFlow OS Frontend
 
-This is the frontend for ClientFlow OS.
+This frontend is the current working product slice for ClientFlow OS.
 
-It is built with React, Vite, Tailwind CSS, and React Router. Right now, the frontend is focused on the application shell, dashboard layout, navigation, and route structure for the larger self-hosted platform.
+It is being shaped around a lean application shell, route-driven workflows, and a dashboard that prioritizes orientation and action over visual density.
 
-## Current scope
+## Current route model
 
-The frontend currently includes:
-- Dashboard shell
-- Sidebar navigation
-- Header layout
-- Routing structure
-- Placeholder pages for core sections
-- Local Docker-based development support
-
-## Tech stack
-
-- React
-- Vite
-- Tailwind CSS
-- React Router
-
-## Run locally
-
-### Install dependencies
-
-From the project root:
-
-```bash
-pnpm install
-```
-
-Or from this folder:
-
-```bash
-pnpm install
-```
-
-### Start the frontend in development
-
-If you are using the project Docker setup, start it through Docker Compose from the project Docker directory.
-
-If you want to run it directly:
-
-```bash
-pnpm dev --host 0.0.0.0
-```
-
-## Frontend structure
-
-```text
-src/
-  components/
-  layouts/
-  pages/
-  routes/
-```
-
-## Current pages
+The active top-level routes are:
 
 - Dashboard
-- Leads
-- Projects
-- Tasks
 - Clients
-- Analytics
+- Tasks
 - Settings
-- Login
-- 404 page
+
+These routes are intended to behave as real product areas, not placeholder navigation.
+
+## Frontend direction
+
+The current frontend philosophy is intentionally narrow:
+
+- Start with the shell before the widgets
+- Treat route boundaries as product design
+- Keep the dashboard focused on triage and handoff
+- Push real work into route-specific surfaces
+- Favor maintainability and clarity over flashy UI
+
+## Dashboard intent
+
+The dashboard should do three things well:
+
+- orient the user,
+- surface the most important work,
+- make the next action obvious.
+
+It should not become a crowded analytics wall or a generic admin homepage.
+
+## Current dashboard structure
+
+The current dashboard is built around:
+
+- Work Queue
+- Next Actions
+- Summary Snapshot
+- Environment
+
+The left side carries the main work queue. The right rail carries route handoff and compact supporting context.
+
+## Component extraction
+
+The current dashboard UI has been split into small presentational pieces:
+
+- `WorkQueueList`
+- `NextActionsList`
+- `SummarySnapshot`
+- `EnvironmentStatus`
+
+The route page owns composition. The child components own rendering.
+
+## Current priorities
+
+- Strengthen the Clients route into a real workflow surface
+- Strengthen the Tasks route into the main execution surface
+- Keep the shell and route model stable while the product shape settles
+- Delay cross-app shared UI extraction until the current slice is more proven
 
 ## Notes
 
-- Shared UI packaging was tested but paused for now
-- UI components currently live inside this frontend app
-- The focus right now is stability, speed, and visible progress
-- The frontend is being built first as a usable shell before deeper backend integration
-
-## Next frontend steps
-
-- Add dynamic page titles
-- Finish nested analytics and settings routes
-- Add auth flow
-- Connect to backend health and data endpoints
-- Replace placeholder content with real data
+- UI components currently live inside the frontend app
+- The dashboard is intentionally lean so it matches the published build narrative
+- This frontend is being built as part of a broader self-hosted full-stack system, but the current slice is intentionally focused
